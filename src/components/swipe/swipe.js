@@ -65,7 +65,7 @@ class Swipe extends Component {
     scrollInit(){
         let dom = ReactDOM.findDOMNode(this.refs.touch); //offsetTop
          let target = ReactDOM.findDOMNode(this.refs.swipe);
-        let {intervals,stopPro,property,width,min,max,step,findScroller,vertical,findDis,touchMove} = this.props;
+        let {intervals,stopPro,property,width,min,max,step,findScroller,vertical,findDis,touchMove,inertia} = this.props;
         let prevTarget = false;
         //let $ = this.$;
 
@@ -93,7 +93,7 @@ class Swipe extends Component {
             max: max, //不必需,滚动属性的最大值
             step: step,
             spring: true, //不必需,是否有回弹效果。默认是true
-            inertia: true, //不必需,是否有惯性。默认是true
+            inertia: inertia, //不必需,是否有惯性。默认是true
             intelligentCorrection: true,
             stopPro:stopPro,
             touchStart: function (value,target) {
@@ -130,6 +130,7 @@ Swipe.defaultProps={
     className:"",
     findDis:false,
     stopPro:true,
+    inertia:true,
     intervals:300,//间隔时间
     touchMove:function(x){
         //console.error("sssssss",this,x)
