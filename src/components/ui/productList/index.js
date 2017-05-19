@@ -84,6 +84,22 @@ class ProductList extends Component {
                                   </div>
                               </div>
                             )
+                    : this.props.listConfig.temp == 'search_rec' ?
+                            this.props.listData.map((item, index) =>
+                                <div styleName="item" key={index}>
+                                    <a {...eventFun(pageName, model, item.id)} styleName="img" href={item.url} ><img src={item.imgUrl} alt="" /></a>
+                                    <a {...eventFun(pageName, model, item.id)} href={item.url} ><h3>{item.name}</h3></a>
+                                    <div styleName="price">
+                                        <span styleName="txt">促销</span> 
+                                        ￥{priceFormat(item.finalPrice)}
+                                        <span styleName="icon"><img src={icons[item.source]} alt=""/></span>
+                                    </div>
+                                    <div styleName="bottom">
+                                        {item.orderNum != null ? <p styleName="sales">销量 <span>{item.orderNum}</span></p> : ''}
+                                        <a {...eventFun(pageName, 'gather_goods_similar', item.id)} href={`newTab://goodstuff.qbao.com/similar?pid=${item.id}`}><span styleName="similar">找相似</span></a>
+                                    </div>
+                                </div>
+                            )
                     : this.props.listData.map((item, index) =>
                             <div styleName="item" key={index}>
                                 <a {...eventFun(pageName, model, item.id)} styleName="img" href={item.url} ><img src={item.imgUrl} alt="" /></a>
