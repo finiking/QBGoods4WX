@@ -3,6 +3,7 @@ import { connect } from 'dva'
 import CSSModules from 'react-css-modules'
 import styles from './index.less'
 import { Link } from 'react-router'
+import {Router} from 'dva/router'
 import classNames from 'classnames'
 import { priceFormat,baoquanFormat, eventFun } from 'libs/util'
 
@@ -27,7 +28,10 @@ class ProductList extends Component {
 
         }
     }
-
+    goDetailClickHandler(item){
+      // console.log(item);
+      this.context.router.push({pathname:"/GoodsDetail/"+item.id,state: { details: item } });
+    }
     render() {
         let { pageName, tabId, model } = this.props.eventConfig
         return (
@@ -52,15 +56,18 @@ class ProductList extends Component {
                     : this.props.listConfig.temp == 'score' ?
                         this.props.listData.map((item, index) =>
                             <div styleName="item" key={index}>
-                                <a {...eventFun(pageName, model, item.id)} styleName="img" href={item.haohuoUrl} ><img src={item.imgUrl} alt="" /></a>
-                                <a {...eventFun(pageName, model, item.id)} href={item.haohuoUrl} ><h3>{item.name}</h3></a>
-                                <div styleName="price">￥{baoquanFormat(item.viewPrice)}
+                                <a {...eventFun(pageName, model, item.id)} styleName="img" onClick={this.goDetailClickHandler.bind(this, item)} href={item.haohuoUrl} ><img src={item.imgUrl} alt="" /></a>
+                                <a {...eventFun(pageName, model, item.id)}  onClick={this.goDetailClickHandler.bind(this, item)} ><h3>{item.name}</h3></a>
+                                <div styleName="price">券后￥{baoquanFormat(item.price)}
                                     <span styleName="icon"><img src={this.icons[item.source]} alt=""/></span>
                                 </div>
                                 <div styleName="bottom score">
-                                    <p styleName="sales">销量 <span>{item.saleCount}</span></p>
+                                    <p styleName="sales">销量 <span>{item.orderNum}</span></p>
                                     <div styleName="tip">
-                                        <a {...eventFun(pageName, 'self_support_score', item.id)} href={item.haohuoUrl} ><div styleName="haohuoScore">{item.haohuoScore}</div></a>
+                                        <a  onClick={this.goDetailClickHandler.bind(this, item)}>
+                                          <div styleName="postage">包邮</div>
+                                          <div styleName="haohuoScore">{item.rebateValue}</div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -139,5 +146,7 @@ function mapDispatchToProps(dispatch) {
     return {
     }
 }
-
+ProductList.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
 export default connect(mapStateToProps, mapDispatchToProps)(CSSModules(ProductList, styles, { allowMultiple: true }));
