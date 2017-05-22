@@ -20,10 +20,10 @@ app.use(convert(historyApiFallback({
     verbose: false
 })))
 
-app.use(proxy({
-  host: 'http://10.172.31.21/',
-  match: /^\/api\//
-}));
+// app.use(proxy({
+//   host: 'http://10.172.31.21/',
+//   match: /^\/api\//
+// }));
 // app.use(proxy({
 //   host: 'http://192.168.14.38/',
 //   match: /^\/custom\//
