@@ -14,6 +14,7 @@ import BindOrder from 'views/BindOrder/page'
 import MyMoney from 'views/MyMoney/page'
 
 import Order from "views/Order/page"
+import Search from "views/Search/page"
 import BannerEntry from "views/Activity/bannerEntry"
 import Banner01 from "views/Activity/banner01"
 import ChannelEntry from "views/Activity/channelEntry"
@@ -40,7 +41,7 @@ export default function (ref) {
         <Route path='/ShopActivity' component={ShopActivity} name="店铺活动页"/>
         <Route path='/GatherGoods' component={GatherGoods} name="聚好货" />
         <Route path='/GatherStore' component={GatherStore} name="聚好店"/>
-
+        <Route path='/Search' component={Search} name="有好货"/>
         <Route path='/BannerEntry' component={BannerEntry} name="活动页面"/>
         <Route path='/Ju/:id' component={Banner01} name="聚好货页面"/>
         <Route path='/bannerDetail/:id' component={bannerDetail} name="Banner详细页面" />

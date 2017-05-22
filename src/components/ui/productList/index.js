@@ -44,7 +44,7 @@ class ProductList extends Component {
                                     <a {...eventFun(pageName, model, item.id)} styleName="img" href={item.url} ><img src={item.imgUrl} alt="" /></a>
                                     <a {...eventFun(pageName, model, item.id)} href={item.url} ><h3>{item.name}</h3></a>
                                     <div styleName="price">￥{priceFormat(item.finalPrice)}
-                                        <span styleName="icon"><img src={this.icons[item.source]} alt=""/></span>
+                                        <span styleName="icon"><img src={icons[item.source]} alt=""/></span>
                                     </div>
                                     <div styleName="bottom">
                                         <span styleName="return">{item.rebateValue}</span>
@@ -56,10 +56,10 @@ class ProductList extends Component {
                     : this.props.listConfig.temp == 'score' ?
                         this.props.listData.map((item, index) =>
                             <div styleName="item" key={index}>
-                                <a {...eventFun(pageName, model, item.id)} styleName="img" onClick={this.goDetailClickHandler.bind(this, item)} href={item.haohuoUrl} ><img src={item.imgUrl} alt="" /></a>
+                                <a {...eventFun(pageName, model, item.id)} styleName="img" onClick={this.goDetailClickHandler.bind(this, item)} ><img src={item.imgUrl} alt="" /></a>
                                 <a {...eventFun(pageName, model, item.id)}  onClick={this.goDetailClickHandler.bind(this, item)} ><h3>{item.name}</h3></a>
                                 <div styleName="price">券后￥{baoquanFormat(item.price)}
-                                    <span styleName="icon"><img src={this.icons[item.source]} alt=""/></span>
+                                    <span styleName="icon"><img src={icons[item.source]} alt=""/></span>
                                 </div>
                                 <div styleName="bottom score">
                                     <p styleName="sales">销量 <span>{item.orderNum}</span></p>
@@ -78,7 +78,7 @@ class ProductList extends Component {
                                 <a {...eventFun(pageName, model, item.id)} styleName="img" href={item.haohuoUrl} ><img src={item.imgUrl} alt="" /></a>
                                 <a {...eventFun(pageName, model, item.id)} href={item.haohuoUrl} ><h3>{item.name}</h3></a>
                                 <div styleName="price">￥{priceFormat(item.viewPrice)}
-                                    <span styleName="icon"><img  src={this.icons[item.source]}  alt="" /></span>
+                                    <span styleName="icon"><img  src={icons[item.source]}  alt="" /></span>
                                 </div>
                                 <div styleName="bottom score">
                                     <p styleName="sales">销量 <span>{item.saleCount}</span></p>
@@ -95,7 +95,7 @@ class ProductList extends Component {
                                   <a {...eventFun(pageName, model, item.id)} styleName="img" href={item.linkUrl} ><img src={item.imgUrl} alt="" /></a>
                                   <a {...eventFun(pageName, model, item.id)} href={item.linkUrl} ><h3>{item.name}</h3></a>
                                   <div styleName="price">￥{priceFormat(item.finalPrice)}
-                                      <span styleName="icon"><img src={this.icons[item.source]} alt=""/></span>
+                                      <span styleName="icon"><img src={icons[item.source]} alt=""/></span>
                                   </div>
                                   <div styleName="bottom">
                                       <span styleName="return">{item.rebateValue}</span>
@@ -103,12 +103,28 @@ class ProductList extends Component {
                                   </div>
                               </div>
                             )
+                    : this.props.listConfig.temp == 'search_rec' ?
+                            this.props.listData.map((item, index) =>
+                                <div styleName="item" key={index}>
+                                    <a {...eventFun(pageName, model, item.id)} styleName="img" href={item.url} ><img src={item.imgUrl} alt="" /></a>
+                                    <a {...eventFun(pageName, model, item.id)} href={item.url} ><h3>{item.name}</h3></a>
+                                    <div styleName="price">
+                                        <span styleName="txt">促销</span>
+                                        ￥{priceFormat(item.finalPrice)}
+                                        <span styleName="icon"><img src={icons[item.source]} alt=""/></span>
+                                    </div>
+                                    <div styleName="bottom">
+                                        {item.orderNum != null ? <p styleName="sales">销量 <span>{item.orderNum}</span></p> : ''}
+                                        <a {...eventFun(pageName, 'gather_goods_similar', item.id)} href={`newTab://goodstuff.qbao.com/similar?pid=${item.id}`}><span styleName="similar">找相似</span></a>
+                                    </div>
+                                </div>
+                            )
                     : this.props.listData.map((item, index) =>
                             <div styleName="item" key={index}>
                                 <a {...eventFun(pageName, model, item.id)} styleName="img" href={item.url} ><img src={item.imgUrl} alt="" /></a>
                                 <a {...eventFun(pageName, model, item.id)} href={item.url} ><h3>{item.name}</h3></a>
                                 <div styleName="price">￥{priceFormat(item.finalPrice)}
-                                    <span styleName="icon"><img src={this.icons[item.source]} alt=""/></span>
+                                    <span styleName="icon"><img src={icons[item.source]} alt=""/></span>
                                 </div>
                                 <div styleName="bottom">
                                     <span styleName="return">{item.rebateValue}</span>
