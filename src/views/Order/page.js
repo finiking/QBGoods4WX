@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import "./page.less";
 
-
+import { NavBar } from 'ui';
 import List from "./list";
 import OrderHead from "./head";
 import { eventFun } from 'libs/util'
@@ -27,11 +27,11 @@ class Order extends React.Component {
         this.handClick = this.handClick.bind(this);
         this.upData = this.upData.bind(this);
     }
-    componentWillMount() {   
-        
+    componentWillMount() {
+
     }
     componentWillReceiveProps (nextProps) {
-        
+
     }
     handClick(status) {
         console.log(status);
@@ -51,11 +51,11 @@ class Order extends React.Component {
     }
     render() {
         let {searchParam,headInfo,status} =  this.state;
-       
+
         let i = 0,j=3,$lis=[];
-        
+
        while(i<j){
-           
+
            let sb = Number(i-1);
            i+=1;
            let searchParam = {
@@ -66,9 +66,10 @@ class Order extends React.Component {
            }
            $lis.push(<List upData={this.upData} key={i} searchParam={searchParam}/>);
        }
-        
+
         return (
             <div className="container-my-order">
+                <NavBar title="我的订单"/>
                     <OrderHead status={status} info={headInfo} click={this.handClick}/>
                     {$lis[status]}
             </div>
@@ -80,5 +81,3 @@ Order.defaultProps = {
 }
 
 module.exports = Order;
-
-

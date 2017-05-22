@@ -1,0 +1,24 @@
+@import '~libs/layout/layout-mixin.less';
+
+.BindTabs{
+  height: 50px;
+  border-bottom: 8px solid #f1f1f6;
+  .flex;
+  .flex-justify;
+
+  .tab-item{
+    width: 50%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+
+  }
+  .selected{
+    color: #fd4449;
+    border-bottom: 2px solid #fd4449;
+  }
+
+  .tab-item:nth-child(2){
+    border-left: 1px solid #efeff1;
+  }
+}

@@ -1,6 +1,6 @@
 import {fetchPosts} from "components/common/fetch"
 export default {
-  namespace: 'index',
+  namespace: 'mypage',
   state: {
       loading: true,
       loadingInit: false,
@@ -15,7 +15,7 @@ export default {
       yield put({type: 'setLoading', loading: true})
 
       let tabs = yield call(() => {
-        return fetchPosts("/wechat/stuff/goodsClass.json",{  },"GET")
+        return fetchPosts("/api/stuff/goodsClass.json",{  },"GET")
           .then(data => data.data)
           .catch(err => ([
             {
@@ -26,7 +26,7 @@ export default {
       })
 
       let swipers = yield call(() => {
-        return fetchPosts("/wechat/stuff/ad/banner.json",{ locationId: 1 },"GET")
+        return fetchPosts("/api/stuff/banner.json",{ locationId: 1 },"GET")
           .then(data => data.data)
           .catch(err => ([]))
       })

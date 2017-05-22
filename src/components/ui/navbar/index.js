@@ -49,17 +49,20 @@ class NavBar extends React.Component {
 
 
   _handleClick () {
+    if(this.props.backHandler){
+      this.props.backHandler();
+    }else{
+      this.state.pathName != '/' &&
+      this.context.router.goBack()
 
-    this.state.pathName != '/' &&
-    this.context.router.goBack()
-
-    this.state.pathName == '/' &&
-    typeof  QBaoJSBridge != 'undefined' &&
-    QBaoJSBridge.QBIIClose()
+      this.state.pathName == '/' &&
+      typeof  QBaoJSBridge != 'undefined' &&
+      QBaoJSBridge.QBIIClose()
+    }
   }
 
   render () {
-    this._getTitle()
+    // this._getTitle()
     return (
       <div className="qbii-navbar-container">
         <div className='qbii-navbar qbii-navbar-light'>
@@ -67,7 +70,7 @@ class NavBar extends React.Component {
             <span className='left'></span>
             <span className='left-icon'></span>
           </div>
-          <div className='qbii-navbar-title'>{this.state.title}</div>
+          <div className='qbii-navbar-title'>{this.props.title}</div>
           <div className='qbii-navbar-right'>
             <span className='right-icon hide'></span>
             <span className='right hide'></span>

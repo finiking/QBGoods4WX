@@ -13,22 +13,22 @@ class OrderHead extends React.Component {
         super(props);
         this.handleTrigger = this.handleTrigger.bind(this);
     }
-    componentWillMount() {   
-        
+    componentWillMount() {
+
     }
     componentWillReceiveProps (nextProps) {
-        
+
     }
     handleTrigger(event) {
        let {click} = this.props;
 
        let id = event.currentTarget.dataset.id;
-       
+
        click&&click(id);
        //debugger;
 
     }
-    
+
     render() {
         //total_rebate_value:data.total_rebate_value,
            //     un_rebate_value:data.un_rebate_value
@@ -44,17 +44,17 @@ class OrderHead extends React.Component {
                 className:status==item.id?"tab-select":""
             }
             $lis.push(<li {...props} {...eventFun('109','order_tab', i)} data-id={item.id} ><span>{item.title}</span></li>)
-        } 
+        }
         return (
             <header className="order-head">
                 <ul className='head-top'>
                     <li className="head-top-tab">
-                            <em>{info.totalRebateValue}<i>宝券</i></em>
-                            <span>累计返宝券</span>
+                            <em>{info.totalRebateValue}<i></i></em>
+                            <span>累计返总额</span>
                     </li>
                     <li className="head-top-tab">
-                            <em>{info.unRebateValue}<i>宝券</i></em>
-                            <span>待返宝券数</span>
+                            <em>{info.unRebateValue}<i></i></em>
+                            <span>待返总额</span>
                     </li>
                 </ul>
                 <ul className="head-tab">
@@ -68,11 +68,9 @@ class OrderHead extends React.Component {
 OrderHead.defaultProps = {
     items:[
         {id:0,title:"全部"},
-        {id:2,title:"已返宝券"},
-        {id:1,title:"待返宝券"}
+        {id:2,title:"已返"},
+        {id:1,title:"待返"}
     ]
 }
 
 module.exports = OrderHead;
-
-

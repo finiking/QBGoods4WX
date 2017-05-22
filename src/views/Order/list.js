@@ -46,7 +46,6 @@ class OrderList extends React.Component {
         this.touchMove = this.touchMove.bind(this);
 
         this.handClick = this.handClick.bind(this);
-        this.doDel = this.doDel.bind(this);
         this.toInfo = this.toInfo.bind(this);
 
     }
@@ -96,54 +95,16 @@ class OrderList extends React.Component {
             this.getData(1);
         }
     }
-    doDel(id){
-        let _this = this;
-        let newId= Number(id);
-        Modal.confirm("删除","确认删除吗？").then((data)=>{
-            console.log(data);
-            if(data!=="Ok"){
-                return;
-            }
-            fetchPosts("/stuff/order/delOrder.do",{"id":id},"GET").then((data)=>{
-                    if(data.responseCode===1000){
-                    let {items} = _this.state;
-                    let i = 0,j = items.length,$lis=[];
-                    //debugger
-                    while(i<j){
-                        console.error(items[i])
-                        if(items[i].id===newId){
-                            items.splice(i,1);
-                            break;
-                        }
-                        i+=1;
-                    }
-                    Modal.alert("删除","成功");
-                    _this.setState({
-                        items
-                    })
-                    }else{
-                            Modal.alert("删除","失败");
-
-                    }
-
-
-
-            }).catch(function(error){
-                    Modal.alert("删除","失败");
-            });
-        });
-
-    }
     infoClose(){
         PopUp.hide();
     }
     toInfo(id){
 
 
-            return fetchPosts("/stuff/order/userOrder.do",{id},"GET").then((data)=>{
+            return fetchPosts("/api/stuff/userOrder.json",{id},"GET").then((data)=>{
                     if(data.responseCode===1000){
                     PopUp.show(
-                            (<Info data={data.data} onClick={this.infoClose} />),{maskClosable:true}
+                            (<Info data={data.data} infoClose={this.infoClose} />),{maskClosable:true}
                     );
                     }else{
                             Modal.alert("查看详情","失败");
@@ -174,9 +135,9 @@ class OrderList extends React.Component {
     render() {
 
         let {items,isLoading,page,isEnd} = this.state;
+        console.log(items.length);
         let i =0,j=items.length,$lis = [];
         while(i<j){
-            console.log("----");
             let item = items[i],totalPrice=0,totalSb=0;
             i+=1;
 
@@ -185,7 +146,7 @@ class OrderList extends React.Component {
                 let subItem = item.item[l];
                 l+=1;
 
-                totalPrice = (totalPrice*100+subItem.finalPrice*subItem.stuffNum*100)/100;
+                totalPrice = (totalPrice*100+subItem.price*subItem.stuffNum*100)/100;
                 totalSb = (totalSb*100+Number(subItem.rebateValue)*100)/100
 
                 //totalPrice += subItem.price*subItem.stuffNum;
@@ -195,7 +156,7 @@ class OrderList extends React.Component {
                             <img src={subItem.imgUrl}/>
                         </div>
                         <p>{subItem.name}</p>
-                        <span>￥{subItem.finalPrice}</span>
+                        <span>￥{subItem.price}</span>
                     </div>
                 )
             }
@@ -212,13 +173,12 @@ class OrderList extends React.Component {
                         </p>
                     </a>
                     <div className="order-item-todo" >
-                        {rebateStatus>0&&(<button data-id={item.id} {...eventFun('109', 'order_remove', item.id)} className="js_del">删除</button>)}
                         <button data-id={item.id} {...eventFun('109', 'order_rebate', item.id)} className="js_info">返券详情</button>
                     </div>
                 </li>
             )
         }
-
+        console.log($lis);
         let props = {
             property:"translateY",
             className:"my-order-list",
@@ -247,7 +207,7 @@ class OrderList extends React.Component {
 
 OrderList.defaultProps = {
     pageSize:20,
-    url:"/stuff/order/list.do",
+    url:"/api/stuff/order.json",
     searchParam:{}
 }
 

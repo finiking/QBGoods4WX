@@ -1,0 +1,45 @@
+@import '~libs/layout/layout-mixin.less';
+
+.footerNav {
+  .flex;
+  .flex-justify;
+  position: fixed;;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 46px;
+  text-align: center;
+  background: #fff;
+  border-top: 1px solid #e6e6e6;
+  box-shadow:0px 0px 10px #e6e6e6;
+  -webkit-box-shadow:0px 0px 10px #e6e6e6;
+  color: #666666;
+  .icon{
+    fill: #666666!important;
+    vertical-align: middle;
+  }
+  span{
+    vertical-align: middle;
+  }
+  .active{
+    .icon{
+      fill: #ff5a00!important;
+    }
+    span{
+      color: #ff5a00!important;
+    }
+  }
+  .footerNav-index{
+    width: 50%;
+    height: 31px;
+    margin-top: 7px;
+    line-height: 31px;
+  }
+  .footerNav-my{
+    width: 50%;
+    height: 31px;
+    margin-top: 7px;
+    line-height: 31px;
+    border-left: 1px solid #e6e6e6;
+  }
+}

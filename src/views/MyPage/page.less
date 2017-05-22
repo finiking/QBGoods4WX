@@ -1,0 +1,134 @@
+@import '~libs/layout/layout-mixin.less';
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "PingFang SC","STHeitiSC-Light","Helvetica Neue","Helvetica","Arial",sans-serif,"Mircosoft YaHei";
+  background: #ffffff;
+  height: 100%;
+  font-weight: 200;
+}
+main{
+  .my-container{
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    .scroll-warpper>div:before {
+      content: ".";
+      visibility: hidden;
+      display: block;
+      height: 45px;
+    }
+    .scroll-warpper>div:after {
+      content: ".";
+      visibility: hidden;
+      display: block;
+      height: 45px;
+    }
+    .expert-title {
+        height: 45px;
+        background-color: #f1f1f6;
+        color: #fd472b;
+        font-size: 16px;
+        overflow: hidden;
+        position: relative;
+        .line{
+          border-top: 1px solid #cccbd0;
+          margin: 25px 10px 0;
+        }
+        .title{
+          width: 100px;
+          height: 50px;
+          background-color: #f1f1f6;
+          line-height: 50px;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          margin-left: -50px;
+          color: #676767;
+          text-align: center;
+        }
+    }
+  }
+  .no-up{
+    background-color: white;
+    padding: 12px 0;
+    width: 100%;
+    text-align: center;
+  }
+  .scroll-warpper{
+    overflow: hidden;
+    height: 100%;
+    -webkit-transform:translate3d(0,0,0);
+
+  }
+
+
+  .login-info{
+    width: 100%;
+    height: 60px;
+    background-color: #fff;
+    line-height: 60px;
+    font-size: 18px;
+    .flex;
+    .flex-vertical-row;
+    .flex-justify-space-between;
+    .flex-align-center;
+    .login-name{
+      margin-left: 20px;
+    }
+    .login-out{
+      width: 60px;
+      height: 26px;
+      background-color: #fd4545;
+      line-height: 26px;
+      margin-right: 20px;
+      border-radius: 4px;
+      color: #fff;
+      text-align: center;
+      font-size: 12px;
+    }
+  }
+  .my-nav{
+    background-color: #f1f1f6;
+    padding-top: 10px;
+    overflow: hidden;
+    li{
+      background-color: #fff;
+      height: 52px;
+      border-top: 1px solid #ececec;
+      .flex;
+      .flex-justify;
+      .flex-justify-space-between;
+      .flex-align-center;
+      padding: 0 20px;
+    }
+    .my-back{
+      padding: 0 0;
+      border-top: none;
+      height: 74px;
+      position: relative;
+      .flex;
+      .flex-justify;
+      .back-money{
+        margin-top: 20px;
+        color: #ff9800;
+      }
+      .back-total{
+        width: 50%;
+        height: 74px;
+        text-align: center;
+      }
+      .back-wait{
+        width: 50%;
+        height: 74px;
+        text-align: center;
+        border-left: 1px solid #ececec;
+      }
+      .icon-arrow{
+        position: absolute;
+        right: 20px;
+        bottom: 10px;
+      }
+    }
+  }
+}

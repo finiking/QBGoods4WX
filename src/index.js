@@ -23,6 +23,9 @@ require.ensure([],
         var selfsupport = require('./model/selfsupport')
         var shopActivity = require('./model/ShopActivity')
         var activity = require('./model/activity')
+        var indexpage = require('./model/indexpage')
+        var mypage = require('./model/mypage')
+        var goodsdetail = require('./model/goodsdetail')
         var model  = require('./model')
 
         // ------------------------------------
@@ -40,6 +43,9 @@ require.ensure([],
                 _app.model(selfsupport)
                 _app.model(shopActivity)
                 _app.model(activity)
+                _app.model(indexpage)
+                _app.model(mypage)
+                _app.model(goodsdetail)
                 _app.model(model)
 
                 _app.router(router)
@@ -56,6 +62,9 @@ require.ensure([],
                 html5ForStartApp.model(selfsupport)
                 html5ForStartApp.model(shopActivity)
                 html5ForStartApp.model(activity)
+                html5ForStartApp.model(indexpage)
+                html5ForStartApp.model(mypage)
+                html5ForStartApp.model(goodsdetail)
                 html5ForStartApp.model(model)
 
                 html5ForStartApp.router(router)
